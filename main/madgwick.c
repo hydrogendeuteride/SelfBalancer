@@ -101,3 +101,17 @@ void quat_to_euler_deg(const quaternion_t *q, float *roll, float *pitch, float *
     float cosy_cosp = 1.0f - 2.0f * (qy * qy + qz * qz);
     *yaw = atan2f(siny_cosp, cosy_cosp) * 180.0f / (float) M_PI;
 }
+
+float quat_pitch_rad(const quaternion_t *q)
+{
+    float qw = q->w, qx = q->x, qy = q->y, qz = q->z;
+    float sinp = 2.0f * (qw * qy - qz * qx);
+    if (fabsf(sinp) >= 1.0f)
+    {
+        return copysignf((float) M_PI / 2.0f, sinp);
+    }
+    else
+    {
+        return asinf(sinp);
+    }
+}

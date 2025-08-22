@@ -22,3 +22,4 @@ void madgwick_update_imu(float gx, float gy, float gz,
 
 void quat_to_euler_deg(const quaternion_t *q, float *roll, float *pitch, float *yaw);
 
+float quat_pitch_rad(const quaternion_t *q);
